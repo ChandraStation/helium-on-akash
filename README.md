@@ -55,7 +55,7 @@ To update the miner on Akash, run the above to build it with the latest Helium i
 - Updating the container isn't ideal, this could be improved in the future
 - Currently only the swarm_key is synced to S3, meaning the entire blockchain needs to be downloaded each time you run the miner. It takes about 30 minutes currently with the suggested deploy.yml
 - There is a delay between 'Starting miner...' and the logs for the miner showing. The miner is running during this time, just the logs don't show. They appear after 5-10 minutes.
-- The miner currently shows as relay on the Helium explorer, this might be possible to improve?
+- The miner currently bounces from relay to online on the Helium explorer, this might be possible to improve? Though based off our findings it does not impact the nodes opportunities to be elected for consensus.
 
 ## References
 

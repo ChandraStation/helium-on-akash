@@ -138,6 +138,6 @@ To update the miner on Akash, run the above to build it with the latest Helium i
 - https://testnet-api.helium.wtf/v1/validators/{{ADDRESS}}
 
 ## Shoutout
-shout out to Tom! He played a big roll in making this possible
-https://twitter.com/Tom_Beynon
-https://github.com/tombeynon
+Shout out to Tom! He played a big roll in making this possible.
+- https://twitter.com/Tom_Beynon
+- https://github.com/tombeynon

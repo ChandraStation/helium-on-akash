@@ -41,19 +41,19 @@ Once you have your Helium CLI Wallet installed locally, it's time to create your
 You'll be prompted to supply a new passphrase to complete it. This is used to encrypt/decrypt the wallet.key file, and is needed to sign transactions. Don't lose it.
 
 This command will produce a wallet.key file on your machine, along with output similar to the following:
-
+```
 +-----------------------------------------------------+---------+--------+------------+
 | Address                                             | Sharded | Verify | PwHash     |
 +-----------------------------------------------------+---------+--------+------------+
 | 1aP7nm6mGLMFtgiHQQxbPgKcBwnuQ6ehgTgTN8zjFuxByzJ8eA5 | false   | true   | Argon2id13 |
 +-----------------------------------------------------+---------+--------+------------+
-
+```
 Next, run the info command to get all the relevant details.
 
 `$ helium-wallet info`
 
 The output will look similar to this:
-
+```
 +--------------------+-----------------------------------------------------+
 | Key                | Value                                               |
 +--------------------+-----------------------------------------------------+
@@ -73,7 +73,7 @@ The output will look similar to this:
 +--------------------+-----------------------------------------------------+
 | Securities Balance | 0.00000000                                          |
 +--------------------+-----------------------------------------------------+
-
+```
 Note the Balance | 0.00000000.
 
 The next step is to acquire some Testnet Tokens (TNT). 
@@ -89,12 +89,12 @@ Once you've input your address, the Faucet will deliver just over 10000 TNT to y
 `$ helium-wallet balance`
 
 If all went to plan, you'll see this:
-
+```
 +-----------------------------------------------------+----------------+--------------+-----------------+
 | Address                                             | Balance        | Data Credits | Security Tokens |
 +-----------------------------------------------------+----------------+--------------+-----------------+
 | 1aP7nm6mGLMFtgiHQQxbPgKcBwnuQ6ehgTgTN8zjFuxByzJ8eA5 | 10005.00000000 | 0            | 0.00000000
-
+```
 ## Stake your TNT to the Testnet Validator running on Akash
 (Make sure to replace the address with your own.)
 

@@ -30,6 +30,80 @@ Deploy as [per the docs](https://docs.akash.network/guides/deploy) or using a [d
 
 Once the container is deployed, check the logs to see your address once the server starts (can take a while). If your swarm_key didn't exist in S3 before, the new one should have been uploaded. Subsequent deploys using the same S3 details will now use the same swarm_key.
 
+## Create a Helium Testnet Wallet 
+
+Install the [Helium CLI Wallet](https://github.com/helium/helium-wallet-rs).
+
+Once you have your Helium CLI Wallet installed locally, it's time to create your Testnet Wallet. Run the following command to create it. (This command format assumes you're using the executable. If you've built the wallet from source it'll look slightly different.)
+
+`$ helium-wallet create basic --network testnet`
+
+You'll be prompted to supply a new passphrase to complete it. This is used to encrypt/decrypt the wallet.key file, and is needed to sign transactions. Don't lose it.
+
+This command will produce a wallet.key file on your machine, along with output similar to the following:
+
++-----------------------------------------------------+---------+--------+------------+
+| Address                                             | Sharded | Verify | PwHash     |
++-----------------------------------------------------+---------+--------+------------+
+| 1aP7nm6mGLMFtgiHQQxbPgKcBwnuQ6ehgTgTN8zjFuxByzJ8eA5 | false   | true   | Argon2id13 |
++-----------------------------------------------------+---------+--------+------------+
+
+Next, run the info command to get all the relevant details.
+
+`$ helium-wallet info`
+
+The output will look similar to this:
+
++--------------------+-----------------------------------------------------+
+| Key                | Value                                               |
++--------------------+-----------------------------------------------------+
+| Address            | 1aP7nm6mGLMFtgiHQQxbPgKcBwnuQ6ehgTgTN8zjFuxByzJ8eA5 |
++--------------------+-----------------------------------------------------+
+| Network            | testnet                                             |
++--------------------+-----------------------------------------------------+
+| Type               | ed25519                                             |
++--------------------+-----------------------------------------------------+
+| Sharded            | false                                               |
++--------------------+-----------------------------------------------------+
+| PwHash             | Argon2id13                                          |
++--------------------+-----------------------------------------------------+
+| Balance            | 0.00000000                                          |
++--------------------+-----------------------------------------------------+
+| DC Balance         | 0                                                   |
++--------------------+-----------------------------------------------------+
+| Securities Balance | 0.00000000                                          |
++--------------------+-----------------------------------------------------+
+
+Note the Balance | 0.00000000.
+
+The next step is to acquire some Testnet Tokens (TNT). 
+
+## Acquire TNT from the Testnet Faucet
+
+Running a Validator requires a stake. This stake is 10000 tokens per Validator. For the Testnet we are using TNTs.
+
+To acquire them, head to faucet.helium.wtf and input your the public key from the wallet you just create. Use your public wallet address. If you copy and paste the one above the TNT will be sent to someone else.
+
+Once you've input your address, the Faucet will deliver just over 10000 TNT to your Testnet Wallet. This can take up to 10 minutes so please be patient. Check your wallet balance using the balance command:
+
+`$ helium-wallet balance`
+
+If all went to plan, you'll see this:
+
++-----------------------------------------------------+----------------+--------------+-----------------+
+| Address                                             | Balance        | Data Credits | Security Tokens |
++-----------------------------------------------------+----------------+--------------+-----------------+
+| 1aP7nm6mGLMFtgiHQQxbPgKcBwnuQ6ehgTgTN8zjFuxByzJ8eA5 | 10005.00000000 | 0            | 0.00000000
+
+## Stake your TNT to the Testnet Validator running on Akash
+(Make sure to replace the address with your own.)
+
+`helium-wallet validators stake <YOUR VALIDATOR NODES ADDRESS YOU ACQUIRED FROM THE DEPLOYMENT LOGS> 10000 --commit`
+
+After running this, you'll need to input your wallet passphrase to sign the transaction.
+
+And with that, you're done. Congratulations! You're running a Helium Network Validator on the Akash Network.
+
 ## Build your own image
 
 There are a couple of reasons to run your own image:
@@ -62,3 +136,8 @@ To update the miner on Akash, run the above to build it with the latest Helium i
 - https://docs.helium.com/mine-hnt/validators/validator-deployment-guide
 - https://explorer.helium.wtf/validators
 - https://testnet-api.helium.wtf/v1/validators/{{ADDRESS}}
+
+## Shoutout
+shout out to Tom! He played a big roll in making this possible
+https://twitter.com/Tom_Beynon
+https://github.com/tombeynon
